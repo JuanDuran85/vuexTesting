@@ -5,32 +5,32 @@
                 <button class="float-right btn btn-light" @click="finalTarea(index)">{{ item.completo ? 'Abrir' : 'Cerrar' }}<span v-if="item.completo" class="badge"><font-awesome-icon icon="check" /></span><span v-else class="badge"><font-awesome-icon icon="times" /></span></button>
                 <button class="mx-3 float-right btn btn-light" @click="eliminando(item.id)">Eliminar<span class="badge"><font-awesome-icon icon="trash-alt" /></span></button>
                 <button class="float-right btn btn-light" data-toggle="modal" :data-target="'#tarea'+item.id">Actualizar<span class="badge"><font-awesome-icon icon="pen" /></span></button>
-
-                <div class="modal fade" :id="'tarea'+item.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Actualizando</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Actividad: {{item.id}}</label>
-                                    <input type="text" class="form-control" :placeholder="item.actividad" v-model="tareaNueva">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
-                        </div>
+            </a>
+        </div>
+        <div>
+            <!-- Modal -->
+            <div class="modal fade" :id="'tarea'+item.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-for="item in recibirTareas" :key="item.id">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Actualizando id {{item.id}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="agregarTarea">Modicifa la actividad:</label>
+                            <input type="text" class="form-control" :placeholder="item.actividad" v-model="actividad">
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" @click="guardarNueva">Guardar</button>
+                    </div>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 </template>
@@ -45,7 +45,8 @@ export default {
     },
     data() {
         return {
-            tareaNueva: ''
+            tareaNueva: '',
+            actividad: ''
         }
     },
     methods: {
@@ -54,6 +55,9 @@ export default {
         },
         finalTarea(index){
             this.$store.dispatch('actualizarTarea',index);
+        },
+        guardarNueva(){
+            console.log(this.actividad);
         }
     },
     
