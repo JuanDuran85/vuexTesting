@@ -27,3 +27,5 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# vuexTesting
+Aplicando Vuex mas Testing con Jest - G3
