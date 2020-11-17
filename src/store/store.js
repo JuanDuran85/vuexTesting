@@ -43,6 +43,9 @@ export default new Vuex.Store({
       let borrando = state.tareasInicio.findIndex(res => res.id == id);
       console.log(borrando);
       state.tareasInicio.splice(borrando,1);
+    },
+    actualizarEstadoTarea(state,index){
+      state.tareasInicio[index].completo = !state.tareasInicio[index].completo;
     }
   },
   actions: {
@@ -51,6 +54,9 @@ export default new Vuex.Store({
     },
     eliminarTarea({commit},id){
       commit('eliminandoTareaReci',id);
+    },
+    actualizarTarea({commit},index){
+      commit('actualizarEstadoTarea',index);
     }
   },
 })
