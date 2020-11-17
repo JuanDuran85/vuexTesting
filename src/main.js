@@ -4,10 +4,10 @@ import store from './store/store';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faTrashAlt, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faTrashAlt, faCheck, faTimes, faPen} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add({faTrashAlt, faCheck, faTimes});
+library.add({faTrashAlt, faCheck, faTimes, faPen});
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
