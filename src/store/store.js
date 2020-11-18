@@ -15,12 +15,22 @@ export default new Vuex.Store({
   getters: {
     enviandoTareas(state){
       return state.tareasInicio;
+    },
+    actividadPendiente(state){
+      let resultado = state.tareasInicio.filter(resp => !resp.completo)
+      return resultado.length;
+    },
+    actividadTerminada(state){
+      let resultado = state.tareasInicio.filter(resp => resp.completo)
+      return resultado.length;
+    },
+    totalActividades(state){
+      return state.tareasInicio.length;
     }
   },
   mutations: {
     AgregaTarea(state,tareaReci){
       let idNuevo = Math.floor(Math.random() * 10);
-      console.log(idNuevo);
 
       while(idNuevo >= 0){
         let buscar = state.tareasInicio.find(res => res.id == idNuevo);
@@ -28,7 +38,6 @@ export default new Vuex.Store({
           break;
         }else if(buscar.id == idNuevo) {
           idNuevo++;
-          console.log(idNuevo);
         }
       }
 
@@ -41,11 +50,14 @@ export default new Vuex.Store({
     },
     eliminandoTareaReci(state,id){
       let borrando = state.tareasInicio.findIndex(res => res.id == id);
-      console.log(borrando);
       state.tareasInicio.splice(borrando,1);
     },
     actualizarEstadoTarea(state,index){
       state.tareasInicio[index].completo = !state.tareasInicio[index].completo;
+    },
+    actualizandoActividad(state,data){
+      let encontrado = state.tareasInicio.find(element => element.id === data.id);
+      encontrado.actividad = data.nuevaActividad;
     }
   },
   actions: {
@@ -57,6 +69,9 @@ export default new Vuex.Store({
     },
     actualizarTarea({commit},index){
       commit('actualizarEstadoTarea',index);
+    },
+    actualizarActividad({commit},datos){
+      commit('actualizandoActividad',datos);
     }
   },
 })
