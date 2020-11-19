@@ -11,6 +11,11 @@ describe('Probando TodoAdd componente...', () => {
 
         let input = wrapper.find("input");
         expect(input.element.placeholder).toBe("");
+
+      let htmlTexto = `
+        <label for=\"agregarTarea\">Agrega una tarea a realizar:</label>
+       `
+      expect(wrapper.find('.form-group').element.firstChild).toEqual(htmlTexto);
   });
   it('prueba N° 2', () => {
         const wrapper = shallowMount(TodoAdd);
@@ -30,5 +35,6 @@ describe('Probando TodoAdd componente...', () => {
       input2.setValue("Nueva informacion...");
       wrapper.find('form').trigger('submit');
       expect(wrapper.vm.$data.tarea).toBe("Nueva informacion...");
+      expect(wrapper.find('.btn').text().length).toBe(7);
   });
 })
