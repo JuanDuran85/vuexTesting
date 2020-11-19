@@ -3,7 +3,7 @@
     <form @submit.prevent="addTarea">
       <div class="form-group">
         <label for="agregarTarea">Agrega una tarea a realizar:</label>
-        <input type="text" class="form-control" v-model="tarea">
+        <input type="text" class="form-control" v-model="tarea" placeholder="">
       </div>
       <button type="submit" class="btn btn-primary">Agregar</button>
     </form>

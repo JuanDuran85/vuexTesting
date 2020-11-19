@@ -16,12 +16,12 @@ export default new Vuex.Store({
     enviandoTareas(state){
       return state.tareasInicio;
     },
-    actividadPendiente(state){
-      let resultado = state.tareasInicio.filter(resp => !resp.completo)
+    actividadPendiente(state,getters){
+      let resultado = getters.enviandoTareas.filter(resp => !resp.completo)
       return resultado.length;
     },
-    actividadTerminada(state){
-      let resultado = state.tareasInicio.filter(resp => resp.completo)
+    actividadTerminada(state,getters){
+      let resultado = getters.enviandoTareas.filter(resp => resp.completo)
       return resultado.length;
     },
     totalActividades(state){
